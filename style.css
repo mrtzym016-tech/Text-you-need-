@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  font-family: "Tajawal", Arial, sans-serif;
+  background: #f4f6fb;
+  color: #222;
+}
+
+header {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 15px;
+  background: #fff;
+}
+
+nav button {
+  border: none;
+  background: #eef2ff;
+  color: #3730a3;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+nav button:hover {
+  background: #c7d2fe;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.copy-btn {
+  margin-top: 10px;
+  border: none;
+  background: #4f46e5;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.copy-btn:hover {
+  background: #4338ca;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #555;
+}
