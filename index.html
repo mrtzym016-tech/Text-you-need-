@@ -1,33 +1,29 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Human Replies – ردود بشرية جاهزة</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Human Replies Library</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <header>
-  <h1>💬 Human Replies</h1>
-  <p>ردود بشرية ذكية جاهزة لكل موقف – انسخ واستخدم فورًا</p>
+  <h1>Human Replies Library</h1>
+  <p>Ready-to-send responses for real-life situations</p>
 </header>
 
-<nav>
-  <button onclick="filterCategory('all')">الكل</button>
-  <button onclick="filterCategory('whatsapp')">واتساب</button>
-  <button onclick="filterCategory('objections')">اعتراضات</button>
-  <button onclick="filterCategory('awkward')">مواقف محرجة</button>
-  <button onclick="filterCategory('work')">العمل</button>
-  <button onclick="filterCategory('closed')">مغلقة للبنات/الشباب</button>
-  <button onclick="filterCategory('content')">صناع المحتوى</button>
-</nav>
+<div class="layout">
+  <aside id="categories">
+    <h3>Main Categories</h3>
+  </aside>
 
-<main id="cards"></main>
+  <aside id="subcategories">
+    <h3>Subcategories</h3>
+  </aside>
 
-<footer>
-  <p>© 2026 – محتوى بشري 100% | بدون توليد | بدون API</p>
-</footer>
+  <main id="cards"></main>
+</div>
 
 <script src="data.js"></script>
 <script src="main.js"></script>
