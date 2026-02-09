@@ -1,51 +1,43 @@
-const cardsContainer = document.getElementById("cards");
+const categoriesEl = document.getElementById("categories");
+const subcategoriesEl = document.getElementById("subcategories");
+const cardsEl = document.getElementById("cards");
 
-// تحويل جميع البيانات إلى مصفوفة عامة
-function getAllReplies() {
-  const all = [];
+/* Load main categories */
+Object.keys(DATA).forEach(categoryKey => {
+  const btn = document.createElement("button");
+  btn.textContent = DATA[categoryKey].title;
+  btn.onclick = () => loadSubcategories(categoryKey);
+  categoriesEl.appendChild(btn);
+});
 
-  for (let category in data) {
-    for (let sub in data[category]) {
-      data[category][sub].forEach(text => {
-        all.push({ category, sub, text });
-      });
-    }
-  }
+function loadSubcategories(categoryKey) {
+  subcategoriesEl.innerHTML = "<h3>Subcategories</h3>";
+  cardsEl.innerHTML = "";
 
-  return all;
-}
+  const subs = DATA[categoryKey].subcategories;
 
-// عرض البطاقات
-function showCards(replies) {
-  cardsContainer.innerHTML = '';
-  replies.forEach(reply => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      <p>${reply.text}</p>
-      <small>${reply.category} › ${reply.sub}</small>
-      <button class="copy-btn" onclick="copyText('${reply.text.replace(/'/g, "\\'")}')">نسخ</button>
-    `;
-    cardsContainer.appendChild(card);
+  Object.keys(subs).forEach(subKey => {
+    const btn = document.createElement("button");
+    btn.textContent = subs[subKey].title;
+    btn.onclick = () => loadTexts(subs[subKey].texts);
+    subcategoriesEl.appendChild(btn);
   });
 }
 
-// نسخ النص
+function loadTexts(texts) {
+  cardsEl.innerHTML = "";
+
+  texts.forEach(text => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <p>${text}</p>
+      <button onclick="copyText('${text.replace(/'/g, "\\'")}')">Copy</button>
+    `;
+    cardsEl.appendChild(card);
+  });
+}
+
 function copyText(text) {
-  navigator.clipboard.writeText(text)
-    .then(() => alert('تم النسخ!'))
-    .catch(() => alert('فشل النسخ!'));
+  navigator.clipboard.writeText(text);
 }
-
-// تصفية حسب الفئة
-function filterCategory(category) {
-  if (category === 'all') {
-    showCards(getAllReplies());
-  } else {
-    const filtered = getAllReplies().filter(r => r.category === category);
-    showCards(filtered);
-  }
-}
-
-// عرض الكل عند التحميل
-showCards(getAllReplies());
