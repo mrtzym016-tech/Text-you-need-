@@ -1,29 +1,51 @@
-const container = document.getElementById("cards");
+const cardsContainer = document.getElementById("cards");
 
-function renderCards(category = "all") {
-  container.innerHTML = "";
+// تحويل جميع البيانات إلى مصفوفة عامة
+function getAllReplies() {
+  const all = [];
 
-  TEXTS.filter(item => category === "all" || item.category === category)
-    .forEach(item => {
-      const card = document.createElement("div");
-      card.className = "card";
+  for (let category in data) {
+    for (let sub in data[category]) {
+      data[category][sub].forEach(text => {
+        all.push({ category, sub, text });
+      });
+    }
+  }
 
-      card.innerHTML = `
-        <p>${item.text}</p>
-        <button class="copy-btn">نسخ الرد</button>
-      `;
-
-      card.querySelector(".copy-btn").onclick = () => {
-        navigator.clipboard.writeText(item.text);
-        alert("تم نسخ الرد ✅");
-      };
-
-      container.appendChild(card);
-    });
+  return all;
 }
 
-function filterCategory(cat) {
-  renderCards(cat);
+// عرض البطاقات
+function showCards(replies) {
+  cardsContainer.innerHTML = '';
+  replies.forEach(reply => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <p>${reply.text}</p>
+      <small>${reply.category} › ${reply.sub}</small>
+      <button class="copy-btn" onclick="copyText('${reply.text.replace(/'/g, "\\'")}')">نسخ</button>
+    `;
+    cardsContainer.appendChild(card);
+  });
 }
 
-renderCards();
+// نسخ النص
+function copyText(text) {
+  navigator.clipboard.writeText(text)
+    .then(() => alert('تم النسخ!'))
+    .catch(() => alert('فشل النسخ!'));
+}
+
+// تصفية حسب الفئة
+function filterCategory(category) {
+  if (category === 'all') {
+    showCards(getAllReplies());
+  } else {
+    const filtered = getAllReplies().filter(r => r.category === category);
+    showCards(filtered);
+  }
+}
+
+// عرض الكل عند التحميل
+showCards(getAllReplies());
