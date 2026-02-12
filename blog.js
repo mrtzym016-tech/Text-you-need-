@@ -82,3 +82,24 @@ function subscribe() {
 
   document.getElementById("subscribeMsg").innerText = "Subscribed successfully!";
 }
+document.getElementById("searchInput").addEventListener("input", function(e){
+  const term = e.target.value.toLowerCase();
+  const filtered = articles.filter(a =>
+    a.title.toLowerCase().includes(term) ||
+    a.content.toLowerCase().includes(term)
+  );
+
+  container.innerHTML = "";
+
+  filtered.forEach((article, index) => {
+    const div = document.createElement("div");
+    div.className = "article-card";
+    div.innerHTML = `
+      <img src="${article.image || ''}" class="article-img">
+      <h2>${article.title}</h2>
+      <p>${article.content.substring(0, 200)}...</p>
+      <button onclick="openArticle(${index})">Read More</button>
+    `;
+    container.appendChild(div);
+  });
+});
