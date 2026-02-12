@@ -11,15 +11,20 @@
 <div class="page-content" id="articleContainer"></div>
 
 <script>
-const article = JSON.parse(localStorage.getItem("currentArticle"));
-
 const container = document.getElementById("articleContainer");
 
-container.innerHTML = `
-<img src="${article.image || ''}" class="article-img">
-<h1>${article.title}</h1>
-<p>${article.content}</p>
-`;
+// ✅ Paywall check
+if(CONFIG.enablePaywall){
+  container.innerHTML = `<h2>${CONFIG.paywallMessage}</h2>`;
+} else {
+  const article = JSON.parse(localStorage.getItem("currentArticle"));
+
+  container.innerHTML = `
+  <img src="${article.image || ''}" class="article-img">
+  <h1>${article.title}</h1>
+  <p>${article.content}</p>
+  `;
+}
 </script>
 
 </body>
