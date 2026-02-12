@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Article</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-content" id="articleContainer"></div>
+
+<script>
+const article = JSON.parse(localStorage.getItem("currentArticle"));
+
+const container = document.getElementById("articleContainer");
+
+container.innerHTML = `
+<img src="${article.image || ''}" class="article-img">
+<h1>${article.title}</h1>
+<p>${article.content}</p>
+`;
+</script>
+
+</body>
+</html>
