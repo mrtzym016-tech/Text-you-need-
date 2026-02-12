@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Business Communication Blog | Human Replies Library</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Business Communication Blog | Human Replies Library</title>
 
-  <!-- SEO -->
-  <meta name="description" content="Professional business communication articles and ready-to-use reply strategies for customer service, sales objections, and workplace communication.">
-  <meta name="keywords" content="business communication, customer service replies, sales objection handling, professional email templates">
-  <meta name="author" content="Human Replies Library">
+<meta name="description" content="Professional business communication articles and ready-to-use reply strategies.">
+<meta name="keywords" content="business communication, customer service replies, sales objection handling, professional email templates">
+<meta name="author" content="Human Replies Library">
 
-  <link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
 <nav class="top-nav">
@@ -22,41 +22,27 @@
 <div class="page-content">
   <h1>Business Communication Blog</h1>
 
-  <button id="addArticleBtn" class="add-btn">+ Add New Article</button>
+  <!-- 🔒 ADMIN BUTTON (hidden) -->
+  <button id="adminBtn" class="add-btn" style="display:none;">
+    + Add Article
+  </button>
 
   <div id="articlesContainer"></div>
 </div>
 
+<!-- Modal Form -->
+<div id="articleModal" class="modal">
+  <div class="modal-content">
+    <h2>Add New Article</h2>
+    <input type="text" id="articleTitle" placeholder="Article Title">
+    <textarea id="articleContent" placeholder="Article Content"></textarea>
+    <input type="file" id="articleImage" accept="image/*">
+    <button id="saveArticle">Save Article</button>
+  </div>
+</div>
+
 <script src="articles.js"></script>
-
-<script>
-const container = document.getElementById("articlesContainer");
-
-function renderArticles() {
-  container.innerHTML = "";
-  ARTICLES.forEach(article => {
-    const div = document.createElement("div");
-    div.className = "article-card";
-    div.innerHTML = `
-      <h2>${article.title}</h2>
-      ${article.content}
-    `;
-    container.appendChild(div);
-  });
-}
-
-renderArticles();
-
-document.getElementById("addArticleBtn").onclick = function() {
-  const title = prompt("Enter article title:");
-  const content = prompt("Enter article content (HTML allowed):");
-
-  if(title && content) {
-    ARTICLES.push({ title, content: `<p>${content}</p>` });
-    renderArticles();
-  }
-};
-</script>
+<script src="blog.js"></script>
 
 </body>
 </html>
