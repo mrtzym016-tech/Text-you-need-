@@ -182,3 +182,23 @@ footer {
 .modal-content textarea {
   height: 120px;
 }
+.newsletter-box {
+  background: #eef2ff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.newsletter-box input {
+  padding: 10px;
+  width: 60%;
+  margin-right: 10px;
+}
+
+.newsletter-box button {
+  padding: 10px 15px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
