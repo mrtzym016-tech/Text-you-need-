@@ -72,3 +72,13 @@ document.getElementById("saveArticle").onclick = function() {
 };
 
 renderArticles();
+function subscribe() {
+  const email = document.getElementById("subscriberEmail").value;
+  if (!email.includes("@")) return alert("Enter valid email");
+
+  let subscribers = JSON.parse(localStorage.getItem("subscribers")) || [];
+  subscribers.push(email);
+  localStorage.setItem("subscribers", JSON.stringify(subscribers));
+
+  document.getElementById("subscribeMsg").innerText = "Subscribed successfully!";
+}
